@@ -20,6 +20,14 @@ struct DynamicListView: View {
             Text("Static row")
         }
     }
+    
+    private func testBundles() {
+        if let fileURL = Bundle.main.url(forResource: "file", withExtension: "txt") {
+            if let fileContents = try? String(contentsOf: fileURL) {
+                //it is a string
+            }
+        }
+    }
 }
 
 #Preview {
