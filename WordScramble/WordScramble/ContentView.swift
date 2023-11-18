@@ -8,19 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var usedWords = [String]()
+    @State private var rootWord = ""
+    @State private var newWord = ""
+    
     var body: some View {
-        List {
-            Section("Section 1") {
-                Text("Static Row 1")
-            }
-            
-            Section("Section 2") {
-                ForEach(0..<5) {
-                    Text("Dynamic Row \($0)")
+        NavigationStack {
+            List {
+                Section {
+                    TextField("Enter your word", text: $newWord)
+                }
+
+                Section {
+                    ForEach(usedWords, id: \.self) { word in
+                        HStack {
+                            Text(word)
+                        }
+                    }
                 }
             }
+            .navigationTitle(rootWord)
         }
-        .listStyle(.grouped)
     }
 }
 
